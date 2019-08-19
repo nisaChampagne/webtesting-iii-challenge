@@ -1,9 +1,9 @@
 // Test away!
 import React from 'react'
-import renderer from 'react-test-renderer'
-import { render } from '@testing-library/react'
-import 'jest-dom/extend-expect'
-import Display from './Display'
+import renderer from 'react-test-renderer'/// for snapshot
+import { render } from '@testing-library/react'/// for others
+import 'jest-dom/extend-expect'///so i can use expect without failed test
+import Display from './Display'///importing component needed for testing
 
 describe('<Display />', ()=>{
 ///snapshot of component

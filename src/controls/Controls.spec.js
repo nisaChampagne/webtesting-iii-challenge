@@ -1,10 +1,9 @@
 // Test away!
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
-import 'jest-dom/extend-expect'
-import renderer from 'react-test-renderer'
-import { toBeDisabled } from 'jest-dom'
-import Controls from './Controls'
+import { render, fireEvent } from '@testing-library/react'///for other renders
+import 'jest-dom/extend-expect'/// to access expect without getting test fails
+import renderer from 'react-test-renderer'/// for snapshot renderer
+import Controls from './Controls'///import component needed
 
 describe('<Control />', () => {
 ///snapshot of component
@@ -15,7 +14,6 @@ describe('<Control />', () => {
         expect(tree.toJSON()).toMatchSnapshot();
       });
 
-      expect.extend({ toBeDisabled })
 
     //btn render for closed and locked
     it('should render btn to toggle closed and locked states', ()=>{
@@ -39,9 +37,10 @@ describe('<Control />', () => {
     })
     
     //toggleClosed to change on btn click
-    it(' should toggleClosed change on btn click', ()=>{
-        const toggleClosed = jest.fn();
-        const { getByText } = render(<Controls toggleClosed={toggleClosed}/>)
+    it(' should toggleClosed change on btn click', ()=>{///mocking
+        const toggleClosed = jest.fn();////toggleClosed is my mock in this case
+        const { getByText } = render(<Controls toggleClosed={toggleClosed}/>) ///passing toggleClose as a prop to my Controls component
+        //testing wise
         const btn = getByText(/close gate/i)
         fireEvent.click(btn)
         expect(toggleClosed).toBeCalledTimes(1)
